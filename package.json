@@ -1,0 +1,16 @@
+{
+  "name": "booky",
+  "version": "1.0.0",
+  "main": "index.js",
+  "workspaces": [
+    "packages/front",
+    "packages/back"
+  ],
+  "scripts": {
+    "start": "npm run start:dev --workspace=packages/back && ng s --workspace=front"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {}
+}
