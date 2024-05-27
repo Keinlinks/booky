@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+.date-span{
+  border-radius: 1.5rem;
+  left: 1rem;
+  top: 1rem;
+  user-select: none;
+  opacity: 0.7;
+  &:hover{
+    opacity: 0.1;
+    color: white;
+  }
+}
+.img:hover + .date-span{
+    opacity: 0.1;
+    color: white;
+}

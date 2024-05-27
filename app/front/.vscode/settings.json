@@ -1,0 +1,9 @@
+{
+    "angular-schematics.schematicsDefaultOptions": {
+        "angular-*": {
+            "externalTemplate": true,
+            "selectorPrefix": "booky",
+            "style": "scss"
+        }
+    }
+}

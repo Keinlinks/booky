@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  min-height: calc(100vh - 4rem);
+  background-color: white;
+}
+
+.item{
+  min-height: 500px;
+
+}
+
+.itemAnimation{
+opacity: 0.9;
+  scale: 1;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  &:hover {
+    scale: 1.02;
+    opacity: 1;
+  }
+}
+
+.custom-height{
+  height: 400px;
+}
+.image{
+  height: 250px;
+}
+.inactive{
+  opacity: 0.2;
+  cursor: default;
+}
+
+.subtitle{
+  margin: 0rem 1rem;
+  font-size: 1.2rem;
+  border: 1px solid #eee;
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+}
