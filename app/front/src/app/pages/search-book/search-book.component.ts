@@ -9,6 +9,8 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { Paginator, PaginatorModule, PaginatorState } from 'primeng/paginator';
+import { SearchInputComponent } from '../../shared/components/searchInput/searchInput.component';
+import { SearchService } from '../../services/search.service';
 @Component({
   selector: 'booky-search-book',
   standalone: true,
@@ -22,6 +24,7 @@ import { Paginator, PaginatorModule, PaginatorState } from 'primeng/paginator';
     SkeletonModule,
     RouterLink,
     PaginatorModule,
+    SearchInputComponent
   ],
   templateUrl: './search-book.component.html',
   styleUrl: './search-book.component.scss',
@@ -32,7 +35,7 @@ export class SearchBookComponent implements OnInit,AfterViewInit {
   cd = inject(ChangeDetectorRef);
   router = inject(Router)
   apiService = inject(ApiService);
-
+  searchService = inject(SearchService);
   @ViewChild('paginator') paginator!:Paginator
 
   page: number = 1;
@@ -53,7 +56,7 @@ export class SearchBookComponent implements OnInit,AfterViewInit {
       }
       this.isLoading = true;
       const query = params['search'];
-      this.page = params['page']
+      if (params['page']) this.page = params['page'];
         this.cd.detectChanges();
       if (query) this.title = query;
       this.notFound = false
@@ -80,11 +83,14 @@ export class SearchBookComponent implements OnInit,AfterViewInit {
           this.cd.detectChanges();
         }
     });
+    this.searchService.backToHome.subscribe((data) => {
+      if(!data) return
+      this.products = [];
+      this.isLoading = false;
+      this.cd.detectChanges();
+    })
   }
   ngAfterViewInit(): void {
-    this.paginator.changePage(this.page);
-    console.log(this.paginator.currentPage());
-
   }
   onPageChange(event: PaginatorState) {
     const page = event.page ? event.page + 1 : 1

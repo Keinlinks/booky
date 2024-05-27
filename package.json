@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "workspaces": [
-    "packages/front",
-    "packages/back"
+    "app/front",
+    "app/back"
   ],
   "scripts": {
-    "start": "npm run start:dev --workspace=packages/back && ng s --workspace=front"
+    "start": "start npm run start:dev --workspace=app/back && start npm run start --workspace=app/front"
   },
   "author": "",
   "license": "ISC",

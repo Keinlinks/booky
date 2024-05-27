@@ -6,5 +6,6 @@ import { Subject } from 'rxjs';
 })
 export class SearchService {
   isSearching:Subject<boolean> = new Subject()
+  backToHome:Subject<boolean> = new Subject()
   constructor() { }
 }

@@ -22,9 +22,9 @@
                   </a>
               </div>
           </div>
-          <div  *ngIf="products.length ==0 && !notFound" class=" subtitle">
+          <div  *ngIf="products.length ==0 && !notFound" class="search subtitle">
 
-            <h2>Busca un libro en el buscador</h2>
+            <app-search-input></app-search-input>
           </div>
           <div  *ngIf="notFound" class=" subtitle">
             <h2>Libro no encontrado</h2>

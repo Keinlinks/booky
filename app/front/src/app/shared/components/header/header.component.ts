@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
 import { SearchService } from '../../../services/search.service';
+import { SearchInputComponent } from '../searchInput/searchInput.component';
 
 @Component({
   selector: 'booky-header',
@@ -17,8 +18,7 @@ import { SearchService } from '../../../services/search.service';
     ButtonModule,
     InputTextModule,
     MenubarModule,
-    AutoCompleteModule,
-    FormsModule,
+    SearchInputComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

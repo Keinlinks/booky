@@ -4,7 +4,7 @@
            <h1 class="text-white m-0">Booky</h1>
         </a>
         <div class="px-5 flex align-items-center">
-  <p-autoComplete [(ngModel)]="selectedItem"  [suggestions]="suggestions" (completeMethod)="search($event)" placeholder="Buscar..." (onKeyUp)="searchQuery($event)"></p-autoComplete>
+          <app-search-input></app-search-input>
         </div>
     </div>
 </div>
