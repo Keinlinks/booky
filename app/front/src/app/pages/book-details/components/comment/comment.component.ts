@@ -14,7 +14,7 @@ import { CommentI } from '../../../../models/comment';
 })
 export class CommentComponent {
   @Input() comment:CommentI = {
-    content: '',
-    username: '',
+    content: 'Contenido del comentario',
+    username: 'User 1',
   }
 }

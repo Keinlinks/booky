@@ -28,7 +28,9 @@
           </div>
           <div  *ngIf="notFound" class=" subtitle">
             <h2>Libro no encontrado</h2>
-
+          </div>
+          <div class="subtitle error search" *ngIf="error">
+            <h2>Error en la api externa</h2>
           </div>
 
       </ng-container>

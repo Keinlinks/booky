@@ -8,7 +8,7 @@ export interface ApiResponseBooks {
 
 
 export interface BookResponse {
-  description: string;
+  description: any;
   links: Link[];
   title: string;
   covers: number[];

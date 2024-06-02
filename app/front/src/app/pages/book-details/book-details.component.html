@@ -17,7 +17,7 @@
     <div class="col-12 lg:col-4 py-3 lg:pl-6">
       <h1>{{book.title}}</h1>
       <div class="text-600 block font-large mb-3 font-bold text-3xl">Descripcion</div>
-      <p *ngIf="book.description" class="line-height-3 text-xl text-600 p-0 mx-0 mt-0 mb-4">{{book.description}}</p>
+      <p *ngIf="book.description" class="line-height-3 text-xl text-600 p-0 mx-0 mt-0 mb-4">{{book.description['value'] ?  book.description['value'] : book.description}}</p>
 
       <div class="grid">
         <div class="col-12 ">

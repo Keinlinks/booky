@@ -6,7 +6,12 @@ import { CommentsModule } from './modules/comments.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/nest'),
+    MongooseModule.forRootAsync({
+      useFactory: async () => {
+        console.log('mongodb connection string');
+        return {uri: 'mongodb://localhost/nest'}
+      },
+    }),
     BooksModule,
     CommentsModule,
   ],

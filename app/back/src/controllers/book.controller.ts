@@ -11,7 +11,7 @@ export class BookController {
     const bookFromDb = await this.bookService.findById(key);
 
 	if(bookFromDb) return bookFromDb;
-
+    console.log('book not found');
 	const bookFromApi = await this.externalApiService.findBook(key).toPromise();
   	return bookFromApi.data;
   }
