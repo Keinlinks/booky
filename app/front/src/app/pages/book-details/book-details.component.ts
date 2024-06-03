@@ -32,6 +32,8 @@ export class BookDetailsComponent implements OnInit {
 
   images: string[] = [];
 
+  isLoading = false;
+
   selectedImageIndex: number = 0;
 
   ngOnInit(): void {

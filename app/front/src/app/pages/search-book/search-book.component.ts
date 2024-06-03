@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TooltipModule } from 'primeng/tooltip';
 import { Book } from '../../models/book';
 import { SkeletonModule } from 'primeng/skeleton';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { Paginator, PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { SearchInputComponent } from '../../shared/components/searchInput/searchInput.component';
@@ -83,13 +83,20 @@ export class SearchBookComponent implements OnInit,AfterViewInit {
           this.cd.detectChanges();
         }
     });
-    this.searchService.backToHome.subscribe((data) => {
-      if(!data) return
-      this.products = [];
-      this.isLoading = false;
-      this.cd.detectChanges();
-    })
-  }
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if(event.url == '/'){
+        this.reset();
+        this.cd.detectChanges();
+        }
+      }
+  })
+}
+reset(){
+this.products = [];
+this.title = '';
+this.isLoading = false;
+}
   ngAfterViewInit(): void {
   }
   onPageChange(event: PaginatorState) {

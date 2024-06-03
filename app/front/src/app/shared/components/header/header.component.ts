@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, UrlSegment } from '@angular/router';
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -18,112 +18,53 @@ import { SearchInputComponent } from '../searchInput/searchInput.component';
     ButtonModule,
     InputTextModule,
     MenubarModule,
-    SearchInputComponent
+    SearchInputComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit {
-
-  router = inject(Router)
-  searchService = inject(SearchService)
+  router = inject(Router);
+  searchService = inject(SearchService);
+  route = inject(ActivatedRoute);
+  cd = inject(ChangeDetectorRef);
   items: any[] | undefined;
-
+  showSearch = false;
   selectedItem: any;
 
   suggestions: any[] = [];
   tieredItems: any = [];
   ngOnInit(): void {
-    this.tieredItems = [
-      {
-        label: 'Customers',
-        icon: 'pi pi-fw pi-table',
-        items: [
-          {
-            label: 'New',
-            icon: 'pi pi-fw pi-plus',
-            items: [
-              {
-                label: 'Customer',
-                icon: 'pi pi-fw pi-plus',
-              },
-              {
-                label: 'Duplicate',
-                icon: 'pi pi-fw pi-copy',
-              },
-            ],
-          },
-          {
-            label: 'Edit',
-            icon: 'pi pi-fw pi-user-edit',
-          },
-        ],
-      },
-      {
-        label: 'Orders',
-        icon: 'pi pi-fw pi-shopping-cart',
-        items: [
-          {
-            label: 'View',
-            icon: 'pi pi-fw pi-list',
-          },
-          {
-            label: 'Search',
-            icon: 'pi pi-fw pi-search',
-          },
-        ],
-      },
-      {
-        label: 'Shipments',
-        icon: 'pi pi-fw pi-envelope',
-        items: [
-          {
-            label: 'Tracker',
-            icon: 'pi pi-fw pi-compass',
-          },
-          {
-            label: 'Map',
-            icon: 'pi pi-fw pi-map-marker',
-          },
-          {
-            label: 'Manage',
-            icon: 'pi pi-fw pi-pencil',
-          },
-        ],
-      },
-      {
-        label: 'Profile',
-        icon: 'pi pi-fw pi-user',
-        items: [
-          {
-            label: 'Settings',
-            icon: 'pi pi-fw pi-cog',
-          },
-          {
-            label: 'Billing',
-            icon: 'pi pi-fw pi-file',
-          },
-        ],
-      },
-      { separator: true },
-      {
-        label: 'Quit',
-        icon: 'pi pi-fw pi-sign-out',
-      },
-    ];
-  }
+    this.tieredItems = [];
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+
+        if(event.url == '/'){
+          console.log(event)
+          this.showSearch = false;
+        }
+        else{
+
+          console.log(event);
+          this.showSearch = true;
+        }
+        this.cd.detectChanges()
+      }
+
+    })
+}
 
   search(event: AutoCompleteCompleteEvent) {}
   searchQuery(event: KeyboardEvent) {
     if (event.key == 'Enter') {
-      let input:any = event.target
-      let value = input.value
+      let input: any = event.target;
+      let value = input.value;
 
-      this.router.navigate(['/'],{
-        queryParams: {'search': value}
-      })
-      this.searchService.isSearching.next(true)
+      this.router.navigate(['/'], {
+        queryParams: { search: value },
+      });
+      this.searchService.isSearching.next(true);
     }
   }
 }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { ChipModule } from 'primeng/chip';
 import { DropdownModule } from 'primeng/dropdown';
@@ -36,6 +36,7 @@ import { Publish } from '../../models/publish';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SellFormComponent implements OnInit {
+  isLoading = false;
   book: BookResponse = {
     excerpts: [],
     description:
@@ -152,7 +153,7 @@ export class SellFormComponent implements OnInit {
     price: 0,
     location: '',
   };
-  constructor(private publishService: PublishService) {}
+  constructor(private publishService: PublishService,private cd:ChangeDetectorRef) {}
   ngOnInit(): void {
     this.publishService.getCurrentBookPublish().subscribe((book) => {
       if (JSON.stringify(book) != '{}') {
@@ -168,5 +169,14 @@ export class SellFormComponent implements OnInit {
         this.image = `https://covers.openlibrary.org/b/id/${this.book.covers[0]}-M.jpg`;
       else this.image = '../../../assets/default-book.png';
     });
+  }
+
+  publish(){
+    this.isLoading = true;
+
+    setTimeout(() => {
+      this.isLoading = false;
+      this.cd.detectChanges()
+    }, 2000);
   }
 }
