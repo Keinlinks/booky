@@ -13,12 +13,19 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-post>
-      <tr class="cursor-pointer item" >
-        <td class="text-900 font-bold text-xl mb-4 title">{{ post.book.title }}</td>
+      <tr class="cursor-pointer item">
+        <td class="text-900 font-bold text-xl mb-4 title">
+          {{ post.book.title }}
+        </td>
         <td>$ {{ post.price }}</td>
-        <td>{{ getAuthor(post.book.authors[0] || null) }}</td>
         <td>
-          <img [src]="getImage(post.book)" class="images border-round img"></td>
+          <app-author
+            [authorKey]="getAuthor(post.book.authors[0] || null)"
+          ></app-author>
+        </td>
+        <td>
+          <img [src]="getImage(post.book)" class="images border-round img" />
+        </td>
         <td>{{ post.book.first_publish_date }}</td>
         <td>{{ post.location }}</td>
         <ng-template #available>
@@ -30,4 +37,4 @@
       </tr>
     </ng-template>
   </p-table>
-  </div>
+</div>

@@ -13,13 +13,20 @@ export class PublishController {
     private readonly publishService: PublishService,
   ) {}
   @Get()
-  async getAllPublish(@Query('search') search: string,@Query('page') page: number,@Query('limit') limit: number): Promise<Publish[]> {
-    const publishFromDb = await this.publishService.findAll(limit,page - 1);
+  async getAllPublish(
+    @Query('search') search: string,
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+  ): Promise<Publish[]> {
+    const publishFromDb = await this.publishService.findAll(limit, page - 1);
     return publishFromDb;
   }
   @Post()
   async setPublish(@Body() publish: Publish): Promise<Publish> {
-    console.log(publish)
+    if (typeof publish.book.description == 'object') {
+      let aux = publish.book.description as any;
+      publish.book.description = aux.value;
+    }
     return await this.publishService.create(publish);
   }
 }

@@ -2,12 +2,12 @@
   display: block;
 }
 
-.images{
+.images {
   height: 8rem;
-  width: auto;
+  width: 74px;
 }
-.item{
-  &:hover{
+.item {
+  &:hover {
     background-color: #f5f5f5;
     text-decoration: underline;
   }
