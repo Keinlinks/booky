@@ -18,5 +18,9 @@ export const routes: Routes = [
   {
     path:'publish',
     loadComponent: ()=>import('./pages/sell-form/sell-form.component').then(c=>c.SellFormComponent)
+  },
+  {
+    path:'m',
+    loadComponent: ()=>import('./pages/sell-post/sell-post.component').then(c=>c.SellPostComponent)
   }
 ];

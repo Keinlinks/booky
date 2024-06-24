@@ -1,3 +1,14 @@
 :host {
   display: block;
 }
+
+.images{
+  height: 8rem;
+  width: auto;
+}
+.item{
+  &:hover{
+    background-color: #f5f5f5;
+    text-decoration: underline;
+  }
+}

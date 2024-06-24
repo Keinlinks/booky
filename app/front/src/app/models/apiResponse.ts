@@ -7,7 +7,7 @@ export interface ApiResponseBooks {
 }
 
 
-export interface BookResponse {
+export interface BookResponse extends Book {
   description: any;
   links: Link[];
   title: string;

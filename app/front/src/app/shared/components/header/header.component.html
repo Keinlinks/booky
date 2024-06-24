@@ -3,6 +3,16 @@
         <a class="layout-topbar-logo px-2 flex align-items-center" routerLink="/">
            <h1 class="text-white m-0">Booky</h1>
         </a>
+        <div class="px-1 flex align-items-center">
+          <a class="layout-topbar-item px-2 flex align-items-center gap-1" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="pi pi-home text-white"></i>
+            <span class="text-white">Inicio</span></a>
+        </div>
+        <div class="px-1 flex align-items-center">
+          <a class="layout-topbar-item px-2 flex align-items-center gap-1" routerLink="/m" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="pi pi-money-bill text-white"></i>
+            <span class="text-white">Market</span></a>
+        </div>
         <div class="px-5 flex align-items-center" *ngIf="showSearch">
           <app-search-input></app-search-input>
         </div>

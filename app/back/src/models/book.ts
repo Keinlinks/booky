@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { Author } from 'src/controllers/book.dto';
 
 export type BookDocument = HydratedDocument<Book>;
 
@@ -34,6 +35,22 @@ export class Book {
 
   @Prop()
   public_scan_b: boolean;
+
+  @Prop()
+  covers?: string[];
+
+  @Prop()
+  first_publish_date: string
+
+  @Prop()
+  subjects: string[];
+
+  @Prop()
+  authors: Author[];
+
+  @Prop()
+  description: string;
+
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book);

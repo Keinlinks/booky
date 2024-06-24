@@ -25,5 +25,20 @@ export class CreateBookDto {
   ia: string[];
   author_key: string[];
   public_scan_b: boolean;
+  covers?: string[];
   comments?: CommentI[];
+  first_publish_date: string;
+  subjects: string[];
+  authors: Author[];
+  description: string;
+}
+export interface Author {
+  author: Author2;
+  type: Type2;
+}
+export interface Author2 {
+  key: string;
+}
+export interface Type2 {
+  key: string;
 }

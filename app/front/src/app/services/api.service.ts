@@ -4,6 +4,7 @@ import { environment } from '../../envirnment';
 import { ApiResponseBooks } from '../models/apiResponse';
 import { Book } from '../models/book';
 import { map, tap } from 'rxjs';
+import { Publish } from '../models/publish';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +24,13 @@ export class ApiService {
 
   getBookId(key:string){
    return this.http.get<Book>(`${this.api_url}book/${key}`)
+  }
+
+  setPublish(publish:Publish){
+    return this.http.post<Publish>(`${this.api_url}publish`,publish)
+  }
+
+  getPublish(page:number = 1,limit:number = 10){
+    return this.http.get<Publish[]>(`${this.api_url}publish?limit=${limit}&page=${page}`)
   }
 }
