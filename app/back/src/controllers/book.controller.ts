@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { Book } from 'src/models/book';
 import { BookService } from 'src/services/book.service';
 import { ExternalApiService } from 'src/services/externalApi.service';

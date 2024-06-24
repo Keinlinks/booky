@@ -1,6 +1,6 @@
-import { Book } from "./book";
+import { Book } from 'src/models/book';
 
-export interface Publish {
+export class CreatePublishDto {
   id?: number;
   bookKey: string;
   price?: number;

@@ -1,0 +1,21 @@
+<h2>Ultimas publicaciones</h2>
+<div class="card">
+  <p-table [value]="postsBooks" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Precio</th>
+        <th>Titulo</th>
+        <th>Imagen</th>
+        <th>Disponible</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-post>
+      <tr>
+        <td>{{ post.price }}</td>
+        <td>{{ post.title }}</td>
+        <td>{{ post.image }}</td>
+        <td>{{ post.available }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  </div>

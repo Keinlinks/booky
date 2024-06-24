@@ -9,7 +9,7 @@ import { CommentsModule } from './modules/comments.module';
     MongooseModule.forRootAsync({
       useFactory: async () => {
         console.log('mongodb connection string');
-        return {uri: 'mongodb://localhost/nest'}
+        return {uri: 'mongodb://localhost:27017'}
       },
     }),
     BooksModule,
