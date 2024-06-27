@@ -1,5 +1,6 @@
 import { BookResponse } from "./apiResponse";
 import { Book } from "./book";
+import { Contact } from "./contact";
 
 export interface Publish {
   id?: number;
@@ -8,4 +9,5 @@ export interface Publish {
   trade?: string[];
   available: boolean;
   location?: string;
+  contact: Contact;
 }

@@ -27,6 +27,7 @@ export class PublishController {
       let aux = publish.book.description as any;
       publish.book.description = aux.value;
     }
+    console.log(publish);
     return await this.publishService.create(publish);
   }
 }

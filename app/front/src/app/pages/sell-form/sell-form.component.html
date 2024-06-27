@@ -27,7 +27,21 @@
 
   <input pInputText type="text" placeholder="Localizacion" [(ngModel)]="formSell.location" label="SKU">
 </div>
+<div class="col-4 field">
+  <label for="user">Usuario</label>
 
+  <input id="user" pInputText type="text" placeholder="" [(ngModel)]="formSell.contact.name" label="Usuario">
+</div>
+<div class="col-4 field">
+  <label for="phone">Telefono</label>
+
+  <input id="phone" pInputText type="text" placeholder="" [(ngModel)]="formSell.contact.phone" label="Telefono">
+</div>
+<div class="col-4 field">
+  <label for="email">Correo</label>
+
+  <input id="email" pInputText type="email" placeholder="" [(ngModel)]="formSell.contact.email" label="Correo">
+</div>
 <div class="col-1 field flex gap-5">
 <label for="trade">Intercambiar/Vender</label>
 <p-inputSwitch inputId="trade" />

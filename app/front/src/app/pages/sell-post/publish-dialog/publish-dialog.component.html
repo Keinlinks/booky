@@ -1,0 +1,33 @@
+<div class="">
+  <p-tabMenu [model]="items" (activeItemChange)="onActiveItemChange($event)" [activeItem]="items[0]"></p-tabMenu>
+  <!-- Libro -->
+  <div *ngIf="page === 'Libro'" class="p-5 card mt-2">
+    <div class="grid">
+      <div class="col-12 flex justify-content-center">
+        <img class="border-round-sm" [src]="getImage(publish.book || null)" alt="">
+      </div>
+      <div class="col-12">
+        <h3>{{ publish.book?.title }}</h3>
+        <p>{{ publish.book?.description || "No hay descripcion" }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- Contacto -->
+  <div *ngIf="page === 'Contacto'" class="p-5 card mt-2">
+    <div class="grid">
+      <div class="col-12">
+        <h1>{{ publish.contact.name }}</h1>
+        <h3>{{ publish.location}}</h3>
+        <h5>Precio: ${{ publish.price || 0 | appPrices }}</h5>
+      </div>
+      <div class="col-12">
+        <a target="_blank" [href]="getWhatsapp(publish.contact.phone)"><i class="pi pi-whatsapp" style="font-size: 1.5rem; margin: 0px 5px;"></i>{{ publish.contact.phone }}</a>
+        <h3>{{ publish.contact.email }}</h3>
+      </div>
+  </div>
+
+  <!-- Boton de publicar -->
+  <div class="fixed bottom-0 left-0 bg-white w-full p-2 flex justify-content-end">
+    <button pButton pRipple label="Contactar" class=""></button>
+  </div>
+</div>

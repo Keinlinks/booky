@@ -50,6 +50,11 @@ export class SellFormComponent implements OnInit {
     price: 0,
     location: '',
     book: {} as BookResponse,
+    contact: {
+      name: 'usuario 1',
+      phone: '+569 12345678',
+      email: 'usuario@gmail.com'
+    }
   };
   constructor(private publishService: PublishService,private cd:ChangeDetectorRef,private router: Router,private apiService:ApiService) {}
   ngOnInit(): void {
@@ -61,6 +66,11 @@ export class SellFormComponent implements OnInit {
           book: book,
           price: 0,
           location: '',
+          contact: {
+            name: 'usuario 1',
+            phone: '+569 12345678',
+            email: 'usuario@gmail.com'
+          }
         };
         this.book = book;
         this.cd.detectChanges();
@@ -76,10 +86,18 @@ export class SellFormComponent implements OnInit {
   publish(){
     this.isLoading = true;
 
-    this.apiService.setPublish(this.formSell).subscribe((publish) => {
-      alert('Publicado')
-      this.isLoading = false;
-      this.cd.detectChanges()
-    },)
+    this.apiService.setPublish(this.formSell).subscribe({
+      next: (publish) => {
+        alert('Publicado');
+        this.isLoading = false;
+        this.router.navigate(['/','m']);
+        this.cd.detectChanges();
+      },
+      error: (err) => {
+        alert('Error al publicar');
+        this.isLoading = false;
+        this.cd.detectChanges();
+      },
+    });
   }
 }

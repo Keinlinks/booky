@@ -13,11 +13,11 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-post>
-      <tr class="cursor-pointer item">
+      <tr class="cursor-pointer item" (click)="openDialog(post)">
         <td class="text-900 font-bold text-xl mb-4 title">
           {{ post.book.title }}
         </td>
-        <td>$ {{ post.price }}</td>
+        <td>$ {{ post.price | appPrices }}</td>
         <td>
           <app-author
             [authorKey]="getAuthor(post.book.authors[0] || null)"

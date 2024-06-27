@@ -7,7 +7,7 @@
     "app/back"
   ],
   "scripts": {
-    "start": "start npm run start --workspace=app/back && start npm run start --workspace=app/front"
+    "start": "start npm run start:dev --workspace=app/back && start npm run start --workspace=app/front"
   },
   "author": "",
   "license": "ISC",

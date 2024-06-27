@@ -13,6 +13,9 @@ import { ApiService } from '../../services/api.service';
 import { Publish } from '../../models/publish';
 import { Author, BookResponse } from '../../models/apiResponse';
 import { TagModule } from 'primeng/tag';
+import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { PublishDialogComponent } from './publish-dialog/publish-dialog.component';
+import { PricesPipe } from '../../pipes/prices.pipe';
 @Component({
   selector: 'app-author',
   template: `<span>{{ name }}</span>`,
@@ -43,17 +46,27 @@ export class AuthorComponent implements OnChanges {
 @Component({
   selector: 'app-sell-post',
   standalone: true,
-  imports: [CommonModule, TableModule, TagModule, AuthorComponent],
+  imports: [
+    CommonModule,
+    TableModule,
+    TagModule,
+    AuthorComponent,
+    DynamicDialogModule,
+    PricesPipe
+  ],
   templateUrl: './sell-post.component.html',
   styleUrl: './sell-post.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DialogService],
 })
 export class SellPostComponent {
   postsBooks: Publish[] = [];
   isLoading = false;
+  ref: DynamicDialogRef | undefined;
   constructor(
     private apiService: ApiService,
     private cd: ChangeDetectorRef,
+    public dialogService: DialogService,
   ) {}
 
   ngOnInit(): void {
@@ -73,5 +86,14 @@ export class SellPostComponent {
   getAuthor(author: Author | null): string {
     if (!author) return '';
     return author.author.key;
+  }
+
+  openDialog(publish: Publish) {
+    this.ref = this.dialogService.open(PublishDialogComponent, {
+      data: publish,
+      closable: true,
+      width: '800px',
+      height: '750px',
+    });
   }
 }
